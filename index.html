@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idle Cookie Game</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-1: #1b1207;
+    --bg-2: #2f1f10;
+    --panel: rgba(18, 10, 4, 0.72);
+    --panel-border: rgba(255, 198, 120, 0.22);
+    --text: #fff5e6;
+    --muted: #d0ba99;
+    --accent: #ffbf57;
+    --accent-2: #f68a2f;
+    --danger: #ff6b6b;
+    --shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Manrope", sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%, rgba(255, 195, 107, 0.09), transparent 40%),
+        radial-gradient(circle at 85% 15%, rgba(255, 120, 48, 0.08), transparent 35%),
+        linear-gradient(125deg, var(--bg-1), var(--bg-2));
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.3;
+    background-image:
+        linear-gradient(transparent 96%, rgba(255, 255, 255, 0.07) 96%),
+        linear-gradient(90deg, transparent 96%, rgba(255, 255, 255, 0.05) 96%);
+    background-size: 32px 32px;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 16px 28px;
+    border-bottom: 1px solid var(--panel-border);
+    background: rgba(19, 9, 3, 0.82);
+    backdrop-filter: blur(8px);
+}
+
+.brand {
+    margin: 0;
+    font-family: "Bungee", cursive;
+    font-size: clamp(1rem, 1vw + 0.8rem, 1.45rem);
+    letter-spacing: 0.05em;
+    color: #ffe6c5;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.top-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-link {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 0.96rem;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 9px;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #101010;
+    background: var(--accent);
+}
+
+.search-shell {
+    position: relative;
+    width: min(380px, 50vw);
+}
+
+#globalSearch {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+#globalSearch:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(255, 191, 87, 0.18);
+}
+
+.search-results {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    border: 1px solid var(--panel-border);
+    border-radius: 11px;
+    background: rgba(24, 13, 4, 0.97);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.search-result {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    padding: 10px 12px;
+    cursor: pointer;
+}
+
+.search-result:hover {
+    background: rgba(255, 191, 87, 0.18);
+}
+
+.search-result.active {
+    background: rgba(255, 191, 87, 0.28);
+}
+
+.recent-header {
+    padding: 8px 12px 4px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.hidden {
+    display: none !important;
+}
+
+main {
+    width: min(1150px, calc(100% - 28px));
+    margin: 30px auto;
+    animation: fadeIn 0.26s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero {
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+    padding: clamp(20px, 4vw, 36px);
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(1.7rem, 2vw + 1rem, 2.8rem);
+    line-height: 1.2;
+}
+
+.hero p {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 1.02rem;
+    max-width: 70ch;
+}
+
+.cta-row {
+    margin-top: 18px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: #1a1207;
+    background: linear-gradient(130deg, var(--accent), var(--accent-2));
+}
+
+.btn-secondary {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--panel-border);
+}
+
+.panel {
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    background: var(--panel);
+    box-shadow: var(--shadow);
+}
+
+.leaderboard-shell {
+    padding: 18px;
+}
+
+.section-title {
+    margin: 0 0 14px;
+    font-size: clamp(1.1rem, 1.1vw + 0.9rem, 1.5rem);
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    border: 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    font-weight: 700;
+    cursor: pointer;
+    padding: 9px 14px;
+}
+
+.tab-btn.active {
+    background: var(--accent);
+    color: #1f1409;
+}
+
+.board-list {
+    display: grid;
+    gap: 8px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 62px 54px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    border-radius: 10px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.rank {
+    font-weight: 900;
+    font-size: 1.05rem;
+    color: #ffe1a4;
+}
+
+.avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.username-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.username-link:hover {
+    color: #ffdca0;
+}
+
+.value {
+    font-weight: 800;
+}
+
+.pagination {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.page-pill {
+    padding: 7px 11px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.profile {
+    display: grid;
+    grid-template-columns: minmax(280px, 340px) 1fr;
+    gap: 16px;
+}
+
+.profile-main {
+    display: grid;
+    gap: 16px;
+}
+
+.profile-card {
+    padding: 18px;
+}
+
+.profile-name {
+    margin: 12px 0 4px;
+    font-size: 1.45rem;
+}
+
+.meta {
+    margin: 4px 0;
+    color: var(--muted);
+}
+
+.meta a {
+    color: #ffd28a;
+}
+
+.copy-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.copy-btn {
+    border: 1px solid var(--panel-border);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background: rgba(255, 191, 87, 0.22);
+}
+
+.rank-grid,
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(110px, 1fr));
+    gap: 10px;
+}
+
+.badge,
+.stat-box {
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.badge h4,
+.stat-box h4 {
+    margin: 0;
+    font-size: 0.83rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.badge p,
+.stat-box p {
+    margin: 6px 0 0;
+    font-size: 1.08rem;
+    font-weight: 800;
+}
+
+.notice {
+    color: var(--muted);
+    padding: 14px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.error {
+    color: var(--danger);
+}
+
+.toast {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 120;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--panel-border);
+    background: rgba(20, 12, 6, 0.94);
+    color: var(--text);
+    box-shadow: var(--shadow);
+}
+
+@media (max-width: 930px) {
+    .topbar {
+        flex-wrap: wrap;
+        padding: 14px;
+    }
+
+    .search-shell {
+        width: 100%;
+        order: 3;
+    }
+
+    .profile {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-main {
+        grid-template-columns: 1fr;
+    }
+
+    .rank-grid,
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+    }
+}
+
+@media (max-width: 680px) {
+    main {
+        width: calc(100% - 14px);
+    }
+
+    .row {
+        grid-template-columns: 42px 48px 1fr;
+        gap: 8px;
+    }
+
+    .value {
+        grid-column: 2 / -1;
+        padding-left: 4px;
+    }
+
+    .rank-grid,
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+    <div class="top-left">
+        <a href="/" class="brand" data-route="/">Idle Cookie Game</a>
+        <button class="nav-link" data-route="/leaderboards" id="navLeaderboards">Leaderboards</button>
+    </div>
+    <div class="search-shell">
+        <input id="globalSearch" type="text" placeholder="Search username...">
+        <div id="searchResults" class="search-results hidden"></div>
+    </div>
+</header>
+
+<main id="app"></main>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+const SUPABASE_URL = "https://ufotthtbatjqilnksxms.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVmb3R0aHRiYXRqcWlsbmtzeG1zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NTg2MjQsImV4cCI6MjA4NzAzNDYyNH0.b7yfBcbMqunmVreBFlIk2cWtmYBjBenb3cyF_nNgdqA";
+const pageSize = 25;
+const AVATAR_PLACEHOLDER = "https://via.placeholder.com/150x150?text=Player";
+const leaderboardStats = ["cookies", "money", "rebirths"];
+const RECENT_SEARCHES_KEY = "idle_cookie_recent_searches_v1";
+
+const state = {
+    currentStat: "cookies",
+    currentPage: 0,
+    searchTimer: null,
+    searchResults: [],
+    selectedSearchIndex: -1,
+    toastTimer: null
+};
+
+const app = document.getElementById("app");
+const globalSearch = document.getElementById("globalSearch");
+const searchResultsEl = document.getElementById("searchResults");
+const toastEl = document.getElementById("toast");
+
+function supabaseHeaders(extra = {}) {
+    return {
+        apikey: SUPABASE_KEY,
+        Authorization: `Bearer ${SUPABASE_KEY}`,
+        ...extra
+    };
+}
+
+function formatNumber(value) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n.toLocaleString() : "0";
+}
+
+function formatStatValue(value) {
+    const n = Number(value);
+    if (Number.isFinite(n)) return n.toLocaleString();
+    if (typeof value === "boolean") return value ? "True" : "False";
+    return String(value);
+}
+
+function formatStatLabel(key) {
+    return key
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, char => char.toUpperCase());
+}
+
+function formatDateTime(value) {
+    let date = null;
+    if (typeof value === "number" && Number.isFinite(value)) {
+        const millis = value < 1000000000000 ? value * 1000 : value;
+        date = new Date(millis);
+    } else if (typeof value === "string") {
+        const numeric = Number(value);
+        if (Number.isFinite(numeric) && value.trim() !== "") {
+            const millis = numeric < 1000000000000 ? numeric * 1000 : numeric;
+            date = new Date(millis);
+        } else {
+            date = new Date(value);
+        }
+    }
+
+    if (!date || Number.isNaN(date.getTime())) return String(value);
+    return date.toLocaleString(undefined, {
+        dateStyle: "medium",
+        timeStyle: "short"
+    });
+}
+
+function buildAvatarUrl(userId, size = 150) {
+    const safe = encodeURIComponent(String(userId));
+    const safeSize = Number(size) || 150;
+    return `https://api.dicebear.com/9.x/glass/svg?seed=roblox-${safe}&size=${safeSize}`;
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&#39;");
+}
+
+function showToast(message) {
+    clearTimeout(state.toastTimer);
+    toastEl.textContent = message;
+    toastEl.classList.remove("hidden");
+    state.toastTimer = setTimeout(() => {
+        toastEl.classList.add("hidden");
+    }, 1800);
+}
+
+function getRecentSearches() {
+    try {
+        const raw = localStorage.getItem(RECENT_SEARCHES_KEY);
+        const parsed = JSON.parse(raw || "[]");
+        return Array.isArray(parsed) ? parsed.filter(item => typeof item === "string") : [];
+    } catch (err) {
+        return [];
+    }
+}
+
+function setRecentSearches(items) {
+    localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(items.slice(0, 8)));
+}
+
+function saveRecentSearch(username) {
+    const value = username.trim();
+    if (!value) return;
+    const current = getRecentSearches().filter(item => item.toLowerCase() !== value.toLowerCase());
+    current.unshift(value);
+    setRecentSearches(current);
+}
+
+function renderRecentSearches() {
+    const recent = getRecentSearches();
+    if (!recent.length) {
+        showSearchResults([]);
+        return;
+    }
+
+    state.searchResults = recent.map(username => ({ username, user_id: null }));
+    state.selectedSearchIndex = -1;
+    searchResultsEl.innerHTML = `
+        <div class="recent-header">Recent Searches</div>
+        ${recent.map(username => `
+            <button class="search-result" data-username="${escapeHtml(username)}">${escapeHtml(username)}</button>
+        `).join("")}
+    `;
+    searchResultsEl.classList.remove("hidden");
+}
+
+function setSearchResultActive(index) {
+    const items = Array.from(searchResultsEl.querySelectorAll(".search-result"));
+    items.forEach((item, i) => {
+        item.classList.toggle("active", i === index);
+    });
+    state.selectedSearchIndex = index;
+}
+
+function updateLeaderboardQuery(replace = false) {
+    if (window.location.pathname.replace(/\/+$/, "") !== "/leaderboards") return;
+    const url = new URL(window.location.href);
+    url.searchParams.set("stat", state.currentStat);
+    url.searchParams.set("page", String(state.currentPage + 1));
+    const method = replace ? "replaceState" : "pushState";
+    history[method]({}, "", `${url.pathname}${url.search}`);
+}
+
+function applyLeaderboardQueryFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const requestedStat = params.get("stat");
+    const requestedPage = Number(params.get("page"));
+
+    state.currentStat = leaderboardStats.includes(requestedStat) ? requestedStat : "cookies";
+    state.currentPage = Number.isFinite(requestedPage) && requestedPage > 0 ? requestedPage - 1 : 0;
+}
+
+async function fetchSupabase(path, params = {}, options = {}) {
+    const query = new URLSearchParams(params);
+    const url = `${SUPABASE_URL}/rest/v1/${path}?${query.toString()}`;
+    const res = await fetch(url, {
+        method: options.method || "GET",
+        headers: supabaseHeaders(options.headers || {})
+    });
+
+    if (options.method === "HEAD") {
+        return res;
+    }
+
+    let data = null;
+    try {
+        data = await res.json();
+    } catch (err) {
+        data = null;
+    }
+
+    if (!res.ok) {
+        throw new Error((data && data.message) || `Request failed (${res.status})`);
+    }
+
+    return data;
+}
+
+function navigate(path) {
+    if (window.location.pathname !== path) {
+        history.pushState({}, "", path);
+    }
+    renderRoute();
+}
+
+function updateActiveNav(pathname) {
+    const nav = document.getElementById("navLeaderboards");
+    nav.classList.toggle("active", pathname === "/leaderboards");
+}
+
+function showSearchResults(results) {
+    state.searchResults = results;
+    state.selectedSearchIndex = -1;
+
+    if (!results.length) {
+        searchResultsEl.innerHTML = "";
+        searchResultsEl.classList.add("hidden");
+        return;
+    }
+
+    searchResultsEl.innerHTML = results.map(player => `
+        <button class="search-result" data-username="${escapeHtml(player.username)}">${escapeHtml(player.username)}</button>
+    `).join("");
+
+    searchResultsEl.classList.remove("hidden");
+}
+
+function hideSearchResults() {
+    searchResultsEl.classList.add("hidden");
+    searchResultsEl.innerHTML = "";
+    state.selectedSearchIndex = -1;
+}
+
+async function searchUsernames(term) {
+    if (term.length < 2) {
+        showSearchResults([]);
+        return;
+    }
+
+    try {
+        const results = await fetchSupabase("players", {
+            select: "username,user_id",
+            username: `ilike.*${term}*`,
+            order: "username.asc",
+            limit: "8"
+        });
+
+        showSearchResults(Array.isArray(results) ? results : []);
+    } catch (err) {
+        console.error("Search failed:", err);
+        showSearchResults([]);
+    }
+}
+
+async function goToUsernameFromSearch(raw) {
+    const username = raw.trim();
+    if (!username) return;
+    saveRecentSearch(username);
+    hideSearchResults();
+    globalSearch.value = username;
+    navigate(`/player/${encodeURIComponent(username)}`);
+}
+
+function renderHome() {
+    app.innerHTML = `
+        <section class="hero panel">
+            <h1>Track every player and every climb.</h1>
+            <p>
+                Use the top search to instantly jump to player profiles, or open Leaderboards to explore top cookie, money,
+                and rebirth rankings.
+            </p>
+            <div class="cta-row">
+                <button class="btn btn-primary" data-route="/leaderboards">Open Leaderboards</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('globalSearch').focus()">Find A Player</button>
+            </div>
+        </section>
+    `;
+}
+
+function renderLeaderboardShell() {
+    app.innerHTML = `
+        <section class="panel leaderboard-shell">
+            <h2 class="section-title">Global Leaderboards</h2>
+            <div class="tabs" id="statTabs"></div>
+            <div id="leaderboardContent" class="board-list"></div>
+            <div class="pagination">
+                <button class="btn btn-secondary" id="prevPageBtn">Previous</button>
+                <span class="page-pill" id="pageIndicator">Page 1</span>
+                <button class="btn btn-secondary" id="nextPageBtn">Next</button>
+            </div>
+        </section>
+    `;
+
+    const tabs = document.getElementById("statTabs");
+    tabs.innerHTML = leaderboardStats.map(stat => `
+        <button class="tab-btn ${stat === state.currentStat ? "active" : ""}" data-stat="${stat}">
+            ${stat.charAt(0).toUpperCase() + stat.slice(1)}
+        </button>
+    `).join("");
+
+    tabs.addEventListener("click", evt => {
+        const target = evt.target.closest("[data-stat]");
+        if (!target) return;
+        state.currentStat = target.dataset.stat;
+        state.currentPage = 0;
+        updateLeaderboardQuery();
+        renderLeaderboardShell();
+        loadLeaderboard();
+    });
+
+    document.getElementById("prevPageBtn").onclick = () => {
+        if (state.currentPage > 0) {
+            state.currentPage -= 1;
+            updateLeaderboardQuery();
+            loadLeaderboard();
+        }
+    };
+
+    document.getElementById("nextPageBtn").onclick = () => {
+        state.currentPage += 1;
+        updateLeaderboardQuery();
+        loadLeaderboard();
+    };
+}
+
+function renderLeaderboardRows(rows) {
+    const container = document.getElementById("leaderboardContent");
+    const pageIndicator = document.getElementById("pageIndicator");
+    pageIndicator.textContent = `Page ${state.currentPage + 1}`;
+
+    if (!rows.length) {
+        container.innerHTML = `<div class="notice">No players found for this page.</div>`;
+        return;
+    }
+
+    container.innerHTML = rows.map((player, idx) => {
+        const rank = state.currentPage * pageSize + idx + 1;
+        return `
+            <article class="row">
+                <div class="rank">#${rank}</div>
+                <img class="avatar" src="${buildAvatarUrl(player.user_id, 96)}" alt="${escapeHtml(player.username)}" onerror="this.src='${AVATAR_PLACEHOLDER}'">
+                <div>
+                    <a class="username-link" href="/player/${encodeURIComponent(player.username)}" data-route="/player/${encodeURIComponent(player.username)}">${escapeHtml(player.username)}</a>
+                </div>
+                <div class="value">${formatNumber(player[state.currentStat])}</div>
+            </article>
+        `;
+    }).join("");
+}
+
+async function loadLeaderboard() {
+    const target = document.getElementById("leaderboardContent");
+    if (!target) return;
+
+    target.innerHTML = `<div class="notice">Loading leaderboard...</div>`;
+
+    try {
+        const rows = await fetchSupabase("players", {
+            select: `user_id,username,${state.currentStat}`,
+            order: `${state.currentStat}.desc`,
+            limit: String(pageSize),
+            offset: String(state.currentPage * pageSize)
+        });
+
+        renderLeaderboardRows(Array.isArray(rows) ? rows : []);
+    } catch (err) {
+        target.innerHTML = `<div class="notice error">Failed to load leaderboard: ${err.message}</div>`;
+    }
+}
+
+function profileStatsFromPlayer(player) {
+    const hiddenKeys = new Set(["id", "username", "user_id"]);
+    const stats = [];
+
+    Object.entries(player).forEach(([key, value]) => {
+        if (hiddenKeys.has(key)) return;
+        if (value === null || typeof value === "object") return;
+        const isDateKey = /(_at|updated|created|last_login|timestamp)$/i.test(key);
+        stats.push({
+            key,
+            value: isDateKey ? formatDateTime(value) : value
+        });
+    });
+
+    return stats;
+}
+
+async function getRankForStat(stat, value) {
+    const safeValue = Number.isFinite(Number(value)) ? Number(value) : 0;
+    const res = await fetch(
+        `${SUPABASE_URL}/rest/v1/players?select=user_id&${stat}=gt.${encodeURIComponent(safeValue)}&limit=1`,
+        {
+            headers: supabaseHeaders({ Prefer: "count=exact" })
+        }
+    );
+
+    if (!res.ok) return "?";
+
+    const range = res.headers.get("content-range") || "*/0";
+    const total = Number((range.split("/")[1] || "0"));
+    return Number.isFinite(total) ? total + 1 : "?";
+}
+
+async function fetchPlayerByUsername(username) {
+    const exact = await fetchSupabase("players", {
+        select: "*",
+        username: `ilike.${username}`,
+        limit: "1"
+    });
+
+    if (Array.isArray(exact) && exact.length) return exact[0];
+
+    const fuzzy = await fetchSupabase("players", {
+        select: "*",
+        username: `ilike.*${username}*`,
+        order: "username.asc",
+        limit: "1"
+    });
+
+    if (Array.isArray(fuzzy) && fuzzy.length) return fuzzy[0];
+
+    return null;
+}
+
+function renderProfileSkeleton(username) {
+    app.innerHTML = `
+        <section class="profile">
+            <div class="panel profile-card">
+                <div class="notice">Loading profile for ${escapeHtml(username)}...</div>
+            </div>
+            <div class="panel profile-card">
+                <div class="notice">Loading player stats...</div>
+            </div>
+        </section>
+    `;
+}
+
+function renderProfileNotFound(username) {
+    app.innerHTML = `
+        <section class="panel profile-card">
+            <h2 class="section-title">Player Not Found</h2>
+            <p class="notice">No player matched "${escapeHtml(username)}".</p>
+        </section>
+    `;
+}
+
+function renderProfile(player, ranks) {
+    const allStats = profileStatsFromPlayer(player);
+
+    app.innerHTML = `
+        <section class="profile">
+            <article class="panel profile-card">
+                <img class="avatar" style="width:120px;height:120px" src="${buildAvatarUrl(player.user_id, 150)}" alt="${escapeHtml(player.username)}" onerror="this.src='${AVATAR_PLACEHOLDER}'">
+                <h2 class="profile-name">${escapeHtml(player.username)}</h2>
+                <p class="meta">User ID: ${player.user_id}</p>
+                <p class="meta"><a href="https://www.roblox.com/users/${player.user_id}/profile" target="_blank" rel="noopener noreferrer">Open Roblox Profile</a></p>
+                <div class="copy-row">
+                    <button class="copy-btn" data-copy-text="${encodeURIComponent(player.username)}" data-copy-label="Username">Copy Username</button>
+                    <button class="copy-btn" data-copy-text="${encodeURIComponent(String(player.user_id))}" data-copy-label="User ID">Copy User ID</button>
+                    <button class="copy-btn" data-copy-text="${encodeURIComponent(`https://www.roblox.com/users/${player.user_id}/profile`)}" data-copy-label="Profile Link">Copy Roblox Link</button>
+                </div>
+            </article>
+            <div class="profile-main">
+                <article class="panel profile-card">
+                    <h3 class="section-title">Leaderboard Ranks</h3>
+                    <div class="rank-grid">
+                        <div class="badge"><h4>Cookies</h4><p>#${ranks.cookies}</p></div>
+                        <div class="badge"><h4>Money</h4><p>#${ranks.money}</p></div>
+                        <div class="badge"><h4>Rebirths</h4><p>#${ranks.rebirths}</p></div>
+                    </div>
+                </article>
+                <article class="panel profile-card">
+                    <h3 class="section-title">All Player Stats</h3>
+                    <div class="stats-grid">
+                        ${allStats.map(entry => `
+                            <div class="stat-box">
+                                <h4>${escapeHtml(formatStatLabel(entry.key))}</h4>
+                                <p>${escapeHtml(formatStatValue(entry.value))}</p>
+                            </div>
+                        `).join("")}
+                    </div>
+                </article>
+            </div>
+        </section>
+    `;
+}
+
+async function loadPlayerProfile(usernameFromRoute) {
+    const username = decodeURIComponent(usernameFromRoute);
+    renderProfileSkeleton(username);
+
+    try {
+        const player = await fetchPlayerByUsername(username);
+        if (!player) {
+            renderProfileNotFound(username);
+            return;
+        }
+
+        const [cookiesRank, moneyRank, rebirthsRank] = await Promise.all([
+            getRankForStat("cookies", player.cookies),
+            getRankForStat("money", player.money),
+            getRankForStat("rebirths", player.rebirths)
+        ]);
+
+        renderProfile(player, {
+            cookies: cookiesRank,
+            money: moneyRank,
+            rebirths: rebirthsRank
+        });
+    } catch (err) {
+        app.innerHTML = `<section class="panel profile-card"><p class="notice error">Failed to load profile: ${err.message}</p></section>`;
+    }
+}
+
+function renderRoute() {
+    const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
+    updateActiveNav(pathname);
+
+    if (pathname === "/leaderboards") {
+        applyLeaderboardQueryFromUrl();
+        renderLeaderboardShell();
+        loadLeaderboard();
+        updateLeaderboardQuery(true);
+        return;
+    }
+
+    if (pathname.startsWith("/player/")) {
+        const encodedUsername = pathname.slice("/player/".length);
+        if (!encodedUsername) {
+            renderHome();
+            return;
+        }
+
+        loadPlayerProfile(encodedUsername);
+        return;
+    }
+
+    renderHome();
+}
+
+document.addEventListener("click", evt => {
+    const routeTarget = evt.target.closest("[data-route]");
+    if (routeTarget) {
+        evt.preventDefault();
+        navigate(routeTarget.dataset.route);
+        return;
+    }
+
+    const resultTarget = evt.target.closest(".search-result");
+    if (resultTarget) {
+        goToUsernameFromSearch(resultTarget.dataset.username);
+        return;
+    }
+
+    const copyTarget = evt.target.closest("[data-copy-text]");
+    if (copyTarget) {
+        const text = decodeURIComponent(copyTarget.dataset.copyText || "");
+        const label = copyTarget.dataset.copyLabel || "Value";
+        navigator.clipboard.writeText(text)
+            .then(() => showToast(`${label} copied`))
+            .catch(() => showToast("Copy failed"));
+        return;
+    }
+
+    if (!evt.target.closest(".search-shell")) {
+        hideSearchResults();
+    }
+});
+
+window.addEventListener("popstate", renderRoute);
+
+globalSearch.addEventListener("input", () => {
+    clearTimeout(state.searchTimer);
+    const value = globalSearch.value.trim();
+    state.searchTimer = setTimeout(() => {
+        if (value.length < 2) {
+            renderRecentSearches();
+            return;
+        }
+        searchUsernames(value);
+    }, 180);
+});
+
+globalSearch.addEventListener("focus", () => {
+    const value = globalSearch.value.trim();
+    if (value.length < 2) {
+        renderRecentSearches();
+    }
+});
+
+globalSearch.addEventListener("keydown", evt => {
+    const items = Array.from(searchResultsEl.querySelectorAll(".search-result"));
+
+    if (evt.key === "ArrowDown") {
+        if (!items.length) return;
+        evt.preventDefault();
+        const nextIndex = state.selectedSearchIndex < items.length - 1 ? state.selectedSearchIndex + 1 : 0;
+        setSearchResultActive(nextIndex);
+        return;
+    }
+
+    if (evt.key === "ArrowUp") {
+        if (!items.length) return;
+        evt.preventDefault();
+        const prevIndex = state.selectedSearchIndex > 0 ? state.selectedSearchIndex - 1 : items.length - 1;
+        setSearchResultActive(prevIndex);
+        return;
+    }
+
+    if (evt.key === "Escape") {
+        hideSearchResults();
+        return;
+    }
+
+    if (evt.key !== "Enter") return;
+    evt.preventDefault();
+
+    if (state.selectedSearchIndex >= 0 && items[state.selectedSearchIndex]) {
+        goToUsernameFromSearch(items[state.selectedSearchIndex].dataset.username || "");
+        return;
+    }
+
+    if (state.searchResults.length) {
+        goToUsernameFromSearch(state.searchResults[0].username);
+        return;
+    }
+
+    goToUsernameFromSearch(globalSearch.value);
+});
+
+renderRoute();
+</script>
+</body>
+</html>
