@@ -149,6 +149,27 @@ body::before {
     background: rgba(255, 191, 87, 0.28);
 }
 
+.search-result-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-result-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    object-fit: cover;
+    background: rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+.search-result-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .recent-header {
     padding: 8px 12px 4px;
     color: var(--muted);
@@ -190,6 +211,14 @@ main {
     margin: 0;
     font-size: clamp(1.7rem, 2vw + 1rem, 2.8rem);
     line-height: 1.2;
+}
+
+.hero-brand {
+    margin: 0 0 10px;
+    font-family: "Bungee", cursive;
+    font-size: clamp(1.45rem, 1.8vw + 1rem, 2.3rem);
+    letter-spacing: 0.03em;
+    color: #ffe5ba;
 }
 
 .hero p {
@@ -284,6 +313,21 @@ main {
     color: #ffe1a4;
 }
 
+.row.top-1 {
+    background: linear-gradient(120deg, rgba(255, 208, 117, 0.24), rgba(255, 255, 255, 0.06));
+    box-shadow: inset 0 0 0 1px rgba(255, 215, 130, 0.28);
+}
+
+.row.top-2 {
+    background: linear-gradient(120deg, rgba(221, 226, 234, 0.18), rgba(255, 255, 255, 0.05));
+    box-shadow: inset 0 0 0 1px rgba(202, 211, 221, 0.2);
+}
+
+.row.top-3 {
+    background: linear-gradient(120deg, rgba(191, 132, 83, 0.22), rgba(255, 255, 255, 0.05));
+    box-shadow: inset 0 0 0 1px rgba(205, 146, 98, 0.24);
+}
+
 .avatar {
     width: 54px;
     height: 54px;
@@ -304,6 +348,35 @@ main {
 
 .value {
     font-weight: 800;
+}
+
+.value-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rank-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #1b1207;
+    background: linear-gradient(130deg, #ffd78f, #ffb74f);
+    border-radius: 999px;
+    padding: 4px 8px;
+    white-space: nowrap;
+}
+
+.stat-chip {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #101010;
+    background: rgba(255, 255, 255, 0.82);
+    border-radius: 999px;
+    padding: 4px 8px;
+    white-space: nowrap;
 }
 
 .pagination {
@@ -425,6 +498,152 @@ main {
     box-shadow: var(--shadow);
 }
 
+.home-grid {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
+}
+
+.home-metric {
+    border-radius: 12px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.home-metric h4 {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.home-metric p {
+    margin: 8px 0 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.home-search-shell {
+    flex: 1;
+    width: auto;
+    margin-top: 0;
+}
+
+.home-search-panel {
+    margin-top: 14px;
+    padding: 12px;
+}
+
+.home-search-row {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
+}
+
+#homeSearch {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 11px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    padding: 12px 14px;
+    font-size: 1.02rem;
+    outline: none;
+}
+
+#homeSearch:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(255, 191, 87, 0.18);
+}
+
+.home-search-btn {
+    min-width: 120px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 10px;
+}
+
+.home-leaderboards-panel {
+    margin-top: 14px;
+    padding: 14px;
+}
+
+.home-boards-grid {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+}
+
+.home-board-card {
+    border-radius: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-board-title {
+    margin: 0 0 10px;
+    font-size: 0.98rem;
+    color: #ffdba4;
+    font-weight: 800;
+}
+
+.home-board-list {
+    display: grid;
+    gap: 8px;
+}
+
+.home-board-row {
+    display: grid;
+    grid-template-columns: 34px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.93rem;
+}
+
+.home-board-rank {
+    color: #ffe19f;
+    font-weight: 900;
+}
+
+.home-board-user {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+}
+
+.home-board-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.home-board-name {
+    color: var(--text);
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.home-board-name:hover {
+    color: #ffe3b6;
+}
+
+.home-board-value {
+    color: var(--muted);
+    font-weight: 700;
+}
+
 @media (max-width: 930px) {
     .topbar {
         flex-wrap: wrap;
@@ -448,6 +667,14 @@ main {
     .stats-grid {
         grid-template-columns: repeat(2, minmax(120px, 1fr));
     }
+
+    .home-grid {
+        grid-template-columns: repeat(2, minmax(170px, 1fr));
+    }
+
+    .home-boards-grid {
+        grid-template-columns: repeat(2, minmax(210px, 1fr));
+    }
 }
 
 @media (max-width: 680px) {
@@ -460,7 +687,7 @@ main {
         gap: 8px;
     }
 
-    .value {
+    .value-wrap {
         grid-column: 2 / -1;
         padding-left: 4px;
     }
@@ -468,6 +695,23 @@ main {
     .rank-grid,
     .stats-grid {
         grid-template-columns: 1fr;
+    }
+
+    .home-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-boards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .home-search-row {
+        flex-direction: column;
+    }
+
+    .home-search-btn {
+        width: 100%;
+        min-height: 44px;
     }
 }
 </style>
@@ -494,6 +738,13 @@ const pageSize = 25;
 const AVATAR_PLACEHOLDER = "https://via.placeholder.com/150x150?text=Player";
 const leaderboardStats = ["cookies", "money", "rebirths"];
 const RECENT_SEARCHES_KEY = "idle_cookie_recent_searches_v1";
+const USE_HASH_ROUTING = true;
+const avatarUrlCache = new Map();
+const STAT_META = {
+    cookies: { icon: "[CK]", label: "Cookies" },
+    money: { icon: "[$]", label: "Money" },
+    rebirths: { icon: "[RB]", label: "Rebirths" }
+};
 
 const state = {
     currentStat: "cookies",
@@ -535,6 +786,24 @@ function formatStatLabel(key) {
         .replace(/\b\w/g, char => char.toUpperCase());
 }
 
+function getRankBadgeLabel(rank) {
+    if (rank <= 10) return "Top 10";
+    if (rank <= 100) return "Top 100";
+    if (rank <= 1000) return "Top 1K";
+    return "";
+}
+
+function getTopRankClass(rank) {
+    if (rank === 1) return "top-1";
+    if (rank === 2) return "top-2";
+    if (rank === 3) return "top-3";
+    return "";
+}
+
+function getCurrentStatMeta() {
+    return STAT_META[state.currentStat] || { icon: "[ST]", label: state.currentStat };
+}
+
 function formatDateTime(value) {
     let date = null;
     if (typeof value === "number" && Number.isFinite(value)) {
@@ -557,10 +826,67 @@ function formatDateTime(value) {
     });
 }
 
-function buildAvatarUrl(userId, size = 150) {
+function formatRelativeTime(value) {
+    let date = null;
+    if (typeof value === "number" && Number.isFinite(value)) {
+        const millis = value < 1000000000000 ? value * 1000 : value;
+        date = new Date(millis);
+    } else if (typeof value === "string") {
+        const parsed = Date.parse(value);
+        if (!Number.isNaN(parsed)) date = new Date(parsed);
+    }
+    if (!date || Number.isNaN(date.getTime())) return "";
+
+    const diffMs = Date.now() - date.getTime();
+    const future = diffMs < 0;
+    const absMs = Math.abs(diffMs);
+    const minutes = Math.floor(absMs / 60000);
+    const hours = Math.floor(absMs / 3600000);
+    const days = Math.floor(absMs / 86400000);
+
+    if (minutes < 1) return future ? "in moments" : "just now";
+    if (minutes < 60) return future ? `in ${minutes}m` : `${minutes}m ago`;
+    if (hours < 24) return future ? `in ${hours}h` : `${hours}h ago`;
+    return future ? `in ${days}d` : `${days}d ago`;
+}
+
+function buildFallbackAvatarUrl(userId, size = 150) {
     const safe = encodeURIComponent(String(userId));
     const safeSize = Number(size) || 150;
     return `https://api.dicebear.com/9.x/glass/svg?seed=roblox-${safe}&size=${safeSize}`;
+}
+
+async function fetchRobloxAvatarUrl(userId, size = 150) {
+    const safeUserId = encodeURIComponent(String(userId));
+    const safeSize = Number(size) || 150;
+    const cacheKey = `${safeUserId}:${safeSize}`;
+    if (avatarUrlCache.has(cacheKey)) return avatarUrlCache.get(cacheKey);
+
+    try {
+        const res = await fetch(
+            `https://thumbnails.roproxy.com/v1/users/avatar-headshot?userIds=${safeUserId}&size=${safeSize}x${safeSize}&format=Png&isCircular=false`
+        );
+        if (!res.ok) throw new Error(`Avatar request failed (${res.status})`);
+
+        const payload = await res.json();
+        const imageUrl = payload?.data?.[0]?.imageUrl;
+        if (!imageUrl) throw new Error("Missing avatar image URL");
+
+        avatarUrlCache.set(cacheKey, imageUrl);
+        return imageUrl;
+    } catch (err) {
+        return buildFallbackAvatarUrl(userId, size);
+    }
+}
+
+function hydrateAvatarImage(imgElement) {
+    const userId = imgElement.dataset.userId;
+    const size = Number(imgElement.dataset.avatarSize) || 150;
+    if (!userId) return;
+
+    fetchRobloxAvatarUrl(userId, size).then(url => {
+        imgElement.src = url;
+    });
 }
 
 function escapeHtml(value) {
@@ -570,6 +896,26 @@ function escapeHtml(value) {
         .replaceAll(">", "&gt;")
         .replaceAll("\"", "&quot;")
         .replaceAll("'", "&#39;");
+}
+
+function buildSearchResultButton(player) {
+    const rawUsername = String(player.username || "");
+    const username = escapeHtml(rawUsername);
+    const encodedUsername = encodeURIComponent(rawUsername);
+    const hasUserId = player.user_id !== null && player.user_id !== undefined && player.user_id !== "";
+    const encodedUserId = hasUserId ? encodeURIComponent(String(player.user_id)) : "";
+    const avatarMarkup = hasUserId
+        ? `<img class="search-result-avatar" src="${buildFallbackAvatarUrl(player.user_id, 150)}" data-user-id="${encodeURIComponent(String(player.user_id))}" data-avatar-size="150" alt="${username}" onerror="this.src='${AVATAR_PLACEHOLDER}'">`
+        : `<img class="search-result-avatar" src="${AVATAR_PLACEHOLDER}" alt="${username}">`;
+
+    return `
+        <button class="search-result" data-username="${encodedUsername}" data-user-id="${encodedUserId}">
+            <span class="search-result-row">
+                ${avatarMarkup}
+                <span class="search-result-label">${username}</span>
+            </span>
+        </button>
+    `;
 }
 
 function showToast(message) {
@@ -585,40 +931,86 @@ function getRecentSearches() {
     try {
         const raw = localStorage.getItem(RECENT_SEARCHES_KEY);
         const parsed = JSON.parse(raw || "[]");
-        return Array.isArray(parsed) ? parsed.filter(item => typeof item === "string") : [];
+        if (!Array.isArray(parsed)) return [];
+
+        return parsed
+            .map(item => {
+                if (typeof item === "string") {
+                    return { username: item, user_id: null };
+                }
+                if (item && typeof item === "object" && typeof item.username === "string") {
+                    return {
+                        username: item.username,
+                        user_id: item.user_id ?? null
+                    };
+                }
+                return null;
+            })
+            .filter(Boolean);
     } catch (err) {
         return [];
     }
 }
 
 function setRecentSearches(items) {
-    localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(items.slice(0, 8)));
+    const normalized = items
+        .map(item => ({
+            username: String(item.username || "").trim(),
+            user_id: item.user_id ?? null
+        }))
+        .filter(item => item.username);
+
+    localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(normalized.slice(0, 8)));
 }
 
-function saveRecentSearch(username) {
+function saveRecentSearch(username, userId = null) {
     const value = username.trim();
     if (!value) return;
-    const current = getRecentSearches().filter(item => item.toLowerCase() !== value.toLowerCase());
-    current.unshift(value);
+    const current = getRecentSearches().filter(item => item.username.toLowerCase() !== value.toLowerCase());
+    current.unshift({ username: value, user_id: userId ?? null });
     setRecentSearches(current);
 }
 
-function renderRecentSearches() {
+async function enrichRecentSearchesWithUserIds(recentEntries) {
+    const pending = recentEntries.map(async entry => {
+        if (entry.user_id !== null && entry.user_id !== undefined && entry.user_id !== "") return entry;
+        try {
+            const result = await fetchSupabase("players", {
+                select: "username,user_id",
+                username: `ilike.${entry.username}`,
+                limit: "1"
+            });
+            if (Array.isArray(result) && result.length) {
+                return {
+                    username: result[0].username || entry.username,
+                    user_id: result[0].user_id ?? null
+                };
+            }
+        } catch (err) {
+        }
+        return entry;
+    });
+
+    return Promise.all(pending);
+}
+
+async function renderRecentSearches() {
     const recent = getRecentSearches();
     if (!recent.length) {
         showSearchResults([]);
         return;
     }
 
-    state.searchResults = recent.map(username => ({ username, user_id: null }));
+    const enrichedRecent = await enrichRecentSearchesWithUserIds(recent);
+    setRecentSearches(enrichedRecent);
+    state.searchResults = enrichedRecent;
     state.selectedSearchIndex = -1;
     searchResultsEl.innerHTML = `
         <div class="recent-header">Recent Searches</div>
-        ${recent.map(username => `
-            <button class="search-result" data-username="${escapeHtml(username)}">${escapeHtml(username)}</button>
-        `).join("")}
+        ${enrichedRecent.map(player => buildSearchResultButton(player)).join("")}
     `;
     searchResultsEl.classList.remove("hidden");
+    searchResultsEl.querySelectorAll("img[data-user-id]").forEach(hydrateAvatarImage);
 }
 
 function setSearchResultActive(index) {
@@ -630,21 +1022,108 @@ function setSearchResultActive(index) {
 }
 
 function updateLeaderboardQuery(replace = false) {
-    if (window.location.pathname.replace(/\/+$/, "") !== "/leaderboards") return;
-    const url = new URL(window.location.href);
-    url.searchParams.set("stat", state.currentStat);
-    url.searchParams.set("page", String(state.currentPage + 1));
-    const method = replace ? "replaceState" : "pushState";
-    history[method]({}, "", `${url.pathname}${url.search}`);
+    const route = getRouteContext();
+    if (route.pathname !== "/leaderboards") return;
+    const params = new URLSearchParams();
+    params.set("stat", state.currentStat);
+    params.set("page", String(state.currentPage + 1));
+    setRouteUrl("/leaderboards", params, replace);
 }
 
 function applyLeaderboardQueryFromUrl() {
-    const params = new URLSearchParams(window.location.search);
+    const params = getRouteContext().searchParams;
     const requestedStat = params.get("stat");
     const requestedPage = Number(params.get("page"));
 
     state.currentStat = leaderboardStats.includes(requestedStat) ? requestedStat : "cookies";
     state.currentPage = Number.isFinite(requestedPage) && requestedPage > 0 ? requestedPage - 1 : 0;
+}
+
+function getRouteContext() {
+    if (USE_HASH_ROUTING) {
+        const rawHash = window.location.hash.startsWith("#") ? window.location.hash.slice(1) : "";
+        const normalized = rawHash || "home";
+        const [routePart, queryPart = ""] = normalized.split("?");
+        const routeName = routePart.replace(/^\//, "").toLowerCase();
+
+        if (routePart.startsWith("/")) {
+            const pathname = routePart.replace(/\/+$/, "") || "/";
+            return {
+                pathname,
+                searchParams: new URLSearchParams(queryPart)
+            };
+        }
+
+        if (routeName === "leaderboards") {
+            return {
+                pathname: "/leaderboards",
+                searchParams: new URLSearchParams(queryPart)
+            };
+        }
+
+        if (routeName === "player") {
+            const params = new URLSearchParams(queryPart);
+            const username = params.get("username") || "";
+            return {
+                pathname: username ? `/player/${encodeURIComponent(username)}` : "/player/",
+                searchParams: params
+            };
+        }
+
+        return {
+            pathname: "/",
+            searchParams: new URLSearchParams(queryPart)
+        };
+    }
+
+    return {
+        pathname: window.location.pathname.replace(/\/+$/, "") || "/",
+        searchParams: new URLSearchParams(window.location.search)
+    };
+}
+
+function setRouteUrl(pathname, params = null, replace = false) {
+    const method = replace ? "replaceState" : "pushState";
+    const query = params && params.toString() ? `?${params.toString()}` : "";
+    const safePath = pathname.replace(/\/+$/, "") || "/";
+
+    if (USE_HASH_ROUTING) {
+        const base = window.location.pathname;
+        let hashRoute = "home";
+
+        if (safePath === "/leaderboards") {
+            hashRoute = `leaderboards${query}`;
+        } else if (safePath.startsWith("/player/")) {
+            const encodedUsername = safePath.slice("/player/".length);
+            const username = decodeURIComponent(encodedUsername || "");
+            const playerParams = new URLSearchParams();
+            if (username) playerParams.set("username", username);
+            hashRoute = `player${playerParams.toString() ? `?${playerParams.toString()}` : ""}`;
+        }
+
+        history[method]({}, "", `${base}#${hashRoute}`);
+        return;
+    }
+
+    history[method]({}, "", `${safePath}${query}`);
+}
+
+function getRouteHref(pathname, params = null) {
+    const safePath = pathname.replace(/\/+$/, "") || "/";
+    const query = params && params.toString() ? `?${params.toString()}` : "";
+
+    if (!USE_HASH_ROUTING) return `${safePath}${query}`;
+
+    if (safePath === "/leaderboards") return `#leaderboards${query}`;
+    if (safePath.startsWith("/player/")) {
+        const encodedUsername = safePath.slice("/player/".length);
+        const username = decodeURIComponent(encodedUsername || "");
+        const playerParams = new URLSearchParams();
+        if (username) playerParams.set("username", username);
+        return `#player${playerParams.toString() ? `?${playerParams.toString()}` : ""}`;
+    }
+
+    return "#home";
 }
 
 async function fetchSupabase(path, params = {}, options = {}) {
@@ -674,9 +1153,10 @@ async function fetchSupabase(path, params = {}, options = {}) {
 }
 
 function navigate(path) {
-    if (window.location.pathname !== path) {
-        history.pushState({}, "", path);
-    }
+    const safePath = path.replace(/\/+$/, "") || "/";
+    const route = getRouteContext();
+    if (route.pathname === safePath) return;
+    setRouteUrl(safePath, null, false);
     renderRoute();
 }
 
@@ -695,17 +1175,23 @@ function showSearchResults(results) {
         return;
     }
 
-    searchResultsEl.innerHTML = results.map(player => `
-        <button class="search-result" data-username="${escapeHtml(player.username)}">${escapeHtml(player.username)}</button>
-    `).join("");
+    searchResultsEl.innerHTML = results.map(buildSearchResultButton).join("");
 
     searchResultsEl.classList.remove("hidden");
+    searchResultsEl.querySelectorAll("img[data-user-id]").forEach(hydrateAvatarImage);
 }
 
 function hideSearchResults() {
     searchResultsEl.classList.add("hidden");
     searchResultsEl.innerHTML = "";
     state.selectedSearchIndex = -1;
+}
+
+function hideHomeSearchResults() {
+    const list = document.getElementById("homeSearchResults");
+    if (!list) return;
+    list.classList.add("hidden");
+    list.innerHTML = "";
 }
 
 async function searchUsernames(term) {
@@ -729,10 +1215,10 @@ async function searchUsernames(term) {
     }
 }
 
-async function goToUsernameFromSearch(raw) {
+async function goToUsernameFromSearch(raw, userId = null) {
     const username = raw.trim();
     if (!username) return;
-    saveRecentSearch(username);
+    saveRecentSearch(username, userId);
     hideSearchResults();
     globalSearch.value = username;
     navigate(`/player/${encodeURIComponent(username)}`);
@@ -741,17 +1227,191 @@ async function goToUsernameFromSearch(raw) {
 function renderHome() {
     app.innerHTML = `
         <section class="hero panel">
-            <h1>Track every player and every climb.</h1>
+            <h1 class="hero-brand">Idle Cookie Game</h1>
             <p>
                 Use the top search to instantly jump to player profiles, or open Leaderboards to explore top cookie, money,
                 and rebirth rankings.
             </p>
+            <div class="home-grid">
+                <div class="home-metric">
+                    <h4>Total Players</h4>
+                    <p id="homeTotalPlayers">...</p>
+                </div>
+                <div class="home-metric">
+                    <h4>Total Leaderboards</h4>
+                    <p>${leaderboardStats.length}</p>
+                </div>
+                <div class="home-metric">
+                    <h4>Game</h4>
+                    <p class="hero-brand" style="font-size:1.05rem;margin:4px 0 0;">Idle Cookie Game</p>
+                </div>
+            </div>
             <div class="cta-row">
                 <button class="btn btn-primary" data-route="/leaderboards">Open Leaderboards</button>
                 <button class="btn btn-secondary" onclick="document.getElementById('globalSearch').focus()">Find A Player</button>
             </div>
         </section>
+        <section class="panel home-search-panel">
+            <div class="home-search-row">
+                <div class="search-shell home-search-shell">
+                    <input id="homeSearch" type="text" placeholder="Search for a player...">
+                    <div id="homeSearchResults" class="search-results hidden"></div>
+                </div>
+                <button id="homeSearchBtn" class="btn btn-primary home-search-btn" type="button">Search</button>
+            </div>
+        </section>
+        <section class="panel home-leaderboards-panel">
+            <h2 class="section-title">Leaderboards</h2>
+            <div id="homeLeaderboardPreviews" class="home-boards-grid">
+                <div class="notice">Loading leaderboard previews...</div>
+            </div>
+        </section>
     `;
+
+    setupHomeSearch();
+    loadHomeStats();
+    loadHomeLeaderboardPreviews();
+}
+
+async function loadHomeLeaderboardPreviews() {
+    const container = document.getElementById("homeLeaderboardPreviews");
+    if (!container) return;
+
+    try {
+        const allBoards = await Promise.all(leaderboardStats.map(async stat => {
+            const rows = await fetchSupabase("players", {
+                select: `user_id,username,${stat}`,
+                order: `${stat}.desc`,
+                limit: "5"
+            });
+            return { stat, rows: Array.isArray(rows) ? rows : [] };
+        }));
+
+        container.innerHTML = allBoards.map(board => {
+            const statMeta = STAT_META[board.stat] || { label: board.stat };
+            const rows = board.rows.map((player, idx) => {
+                const rank = idx + 1;
+                const safeUsername = escapeHtml(player.username);
+                const encodedUsername = encodeURIComponent(player.username);
+                return `
+                    <div class="home-board-row">
+                        <div class="home-board-rank">#${rank}</div>
+                        <div class="home-board-user">
+                            <img
+                                class="home-board-avatar"
+                                src="${buildFallbackAvatarUrl(player.user_id, 150)}"
+                                data-user-id="${encodeURIComponent(String(player.user_id))}"
+                                data-avatar-size="150"
+                                alt="${safeUsername}"
+                                onerror="this.src='${AVATAR_PLACEHOLDER}'"
+                            >
+                            <a class="home-board-name" href="${getRouteHref(`/player/${encodedUsername}`)}" data-route="/player/${encodedUsername}">${safeUsername}</a>
+                        </div>
+                        <div class="home-board-value">${formatNumber(player[board.stat])}</div>
+                    </div>
+                `;
+            }).join("");
+
+            return `
+                <article class="home-board-card">
+                    <h3 class="home-board-title">${statMeta.label}</h3>
+                    <div class="home-board-list">
+                        ${rows || '<div class="notice">No players</div>'}
+                    </div>
+                </article>
+            `;
+        }).join("");
+
+        container.querySelectorAll("img[data-user-id]").forEach(hydrateAvatarImage);
+    } catch (err) {
+        container.innerHTML = `<div class="notice error">Failed to load leaderboard previews.</div>`;
+    }
+}
+
+async function loadHomeStats() {
+    const target = document.getElementById("homeTotalPlayers");
+    if (!target) return;
+
+    try {
+        const res = await fetch(
+            `${SUPABASE_URL}/rest/v1/players?select=user_id&limit=1`,
+            { headers: supabaseHeaders({ Prefer: "count=exact" }) }
+        );
+        if (!res.ok) throw new Error("count failed");
+        const range = res.headers.get("content-range") || "*/0";
+        const total = Number((range.split("/")[1] || "0"));
+        target.textContent = Number.isFinite(total) ? total.toLocaleString() : "0";
+    } catch (err) {
+        target.textContent = "N/A";
+    }
+}
+
+function setupHomeSearch() {
+    const input = document.getElementById("homeSearch");
+    const list = document.getElementById("homeSearchResults");
+    const button = document.getElementById("homeSearchBtn");
+    if (!input || !list) return;
+
+    let timer = null;
+    let localResults = [];
+
+    function renderLocalResults(results) {
+        localResults = results;
+        if (!results.length) {
+            list.classList.add("hidden");
+            list.innerHTML = "";
+            return;
+        }
+        list.innerHTML = results.map(buildSearchResultButton).join("");
+        list.classList.remove("hidden");
+        list.querySelectorAll("img[data-user-id]").forEach(hydrateAvatarImage);
+    }
+
+    input.addEventListener("input", () => {
+        clearTimeout(timer);
+        const value = input.value.trim();
+        timer = setTimeout(async () => {
+            if (value.length < 2) {
+                renderLocalResults([]);
+                return;
+            }
+            try {
+                const results = await fetchSupabase("players", {
+                    select: "username,user_id",
+                    username: `ilike.*${value}*`,
+                    order: "username.asc",
+                    limit: "8"
+                });
+                renderLocalResults(Array.isArray(results) ? results : []);
+            } catch (err) {
+                renderLocalResults([]);
+            }
+        }, 180);
+    });
+
+    input.addEventListener("keydown", evt => {
+        if (evt.key === "Escape") {
+            list.classList.add("hidden");
+            return;
+        }
+        if (evt.key !== "Enter") return;
+        evt.preventDefault();
+        if (localResults.length) {
+            goToUsernameFromSearch(localResults[0].username, localResults[0].user_id ?? null);
+            return;
+        }
+        goToUsernameFromSearch(input.value);
+    });
+
+    if (button) {
+        button.addEventListener("click", () => {
+            if (localResults.length) {
+                goToUsernameFromSearch(localResults[0].username, localResults[0].user_id ?? null);
+                return;
+            }
+            goToUsernameFromSearch(input.value);
+        });
+    }
 }
 
 function renderLeaderboardShell() {
@@ -812,17 +1472,33 @@ function renderLeaderboardRows(rows) {
 
     container.innerHTML = rows.map((player, idx) => {
         const rank = state.currentPage * pageSize + idx + 1;
+        const rankBadge = getRankBadgeLabel(rank);
+        const topRankClass = getTopRankClass(rank);
+        const statMeta = getCurrentStatMeta();
         return `
-            <article class="row">
+            <article class="row ${topRankClass}">
                 <div class="rank">#${rank}</div>
-                <img class="avatar" src="${buildAvatarUrl(player.user_id, 96)}" alt="${escapeHtml(player.username)}" onerror="this.src='${AVATAR_PLACEHOLDER}'">
+                <img
+                    class="avatar"
+                    src="${buildFallbackAvatarUrl(player.user_id, 150)}"
+                    data-user-id="${encodeURIComponent(String(player.user_id))}"
+                    data-avatar-size="150"
+                    alt="${escapeHtml(player.username)}"
+                    onerror="this.src='${AVATAR_PLACEHOLDER}'"
+                >
                 <div>
-                    <a class="username-link" href="/player/${encodeURIComponent(player.username)}" data-route="/player/${encodeURIComponent(player.username)}">${escapeHtml(player.username)}</a>
+                    <a class="username-link" href="${getRouteHref(`/player/${encodeURIComponent(player.username)}`)}" data-route="/player/${encodeURIComponent(player.username)}">${escapeHtml(player.username)}</a>
                 </div>
-                <div class="value">${formatNumber(player[state.currentStat])}</div>
+                <div class="value-wrap">
+                    <div class="value">${formatNumber(player[state.currentStat])}</div>
+                    ${rankBadge ? `<span class="rank-badge">${rankBadge}</span>` : ""}
+                    <span class="stat-chip">${statMeta.icon} ${statMeta.label}</span>
+                </div>
             </article>
         `;
     }).join("");
+
+    container.querySelectorAll("img[data-user-id]").forEach(hydrateAvatarImage);
 }
 
 async function loadLeaderboard() {
@@ -855,7 +1531,7 @@ function profileStatsFromPlayer(player) {
         const isDateKey = /(_at|updated|created|last_login|timestamp)$/i.test(key);
         stats.push({
             key,
-            value: isDateKey ? formatDateTime(value) : value
+            value: isDateKey ? `${formatDateTime(value)} (${formatRelativeTime(value)})` : value
         });
     });
 
@@ -927,7 +1603,16 @@ function renderProfile(player, ranks) {
     app.innerHTML = `
         <section class="profile">
             <article class="panel profile-card">
-                <img class="avatar" style="width:120px;height:120px" src="${buildAvatarUrl(player.user_id, 150)}" alt="${escapeHtml(player.username)}" onerror="this.src='${AVATAR_PLACEHOLDER}'">
+                <img
+                    id="profileAvatar"
+                    class="avatar"
+                    style="width:120px;height:120px"
+                    src="${buildFallbackAvatarUrl(player.user_id, 150)}"
+                    data-user-id="${encodeURIComponent(String(player.user_id))}"
+                    data-avatar-size="150"
+                    alt="${escapeHtml(player.username)}"
+                    onerror="this.src='${AVATAR_PLACEHOLDER}'"
+                >
                 <h2 class="profile-name">${escapeHtml(player.username)}</h2>
                 <p class="meta">User ID: ${player.user_id}</p>
                 <p class="meta"><a href="https://www.roblox.com/users/${player.user_id}/profile" target="_blank" rel="noopener noreferrer">Open Roblox Profile</a></p>
@@ -935,6 +1620,7 @@ function renderProfile(player, ranks) {
                     <button class="copy-btn" data-copy-text="${encodeURIComponent(player.username)}" data-copy-label="Username">Copy Username</button>
                     <button class="copy-btn" data-copy-text="${encodeURIComponent(String(player.user_id))}" data-copy-label="User ID">Copy User ID</button>
                     <button class="copy-btn" data-copy-text="${encodeURIComponent(`https://www.roblox.com/users/${player.user_id}/profile`)}" data-copy-label="Profile Link">Copy Roblox Link</button>
+                    <button class="copy-btn" data-copy-text="${encodeURIComponent(`${window.location.origin}${window.location.pathname}${getRouteHref(`/player/${encodeURIComponent(player.username)}`)}`)}" data-copy-label="Profile URL">Copy Profile URL</button>
                 </div>
             </article>
             <div class="profile-main">
@@ -960,6 +1646,9 @@ function renderProfile(player, ranks) {
             </div>
         </section>
     `;
+
+    const profileAvatar = document.getElementById("profileAvatar");
+    if (profileAvatar) hydrateAvatarImage(profileAvatar);
 }
 
 async function loadPlayerProfile(usernameFromRoute) {
@@ -990,7 +1679,7 @@ async function loadPlayerProfile(usernameFromRoute) {
 }
 
 function renderRoute() {
-    const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
+    const { pathname } = getRouteContext();
     updateActiveNav(pathname);
 
     if (pathname === "/leaderboards") {
@@ -1025,7 +1714,9 @@ document.addEventListener("click", evt => {
 
     const resultTarget = evt.target.closest(".search-result");
     if (resultTarget) {
-        goToUsernameFromSearch(resultTarget.dataset.username);
+        const username = decodeURIComponent(resultTarget.dataset.username || "");
+        const userId = resultTarget.dataset.userId ? decodeURIComponent(resultTarget.dataset.userId) : null;
+        goToUsernameFromSearch(username, userId);
         return;
     }
 
@@ -1041,10 +1732,30 @@ document.addEventListener("click", evt => {
 
     if (!evt.target.closest(".search-shell")) {
         hideSearchResults();
+        hideHomeSearchResults();
     }
 });
 
 window.addEventListener("popstate", renderRoute);
+window.addEventListener("hashchange", () => {
+    if (!USE_HASH_ROUTING) return;
+    renderRoute();
+});
+
+document.addEventListener("keydown", evt => {
+    if (evt.key !== "/") return;
+    const target = evt.target;
+    const typingInField = target instanceof HTMLElement && (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable
+    );
+    if (typingInField) return;
+
+    evt.preventDefault();
+    globalSearch.focus();
+    globalSearch.select();
+});
 
 globalSearch.addEventListener("input", () => {
     clearTimeout(state.searchTimer);
@@ -1093,12 +1804,15 @@ globalSearch.addEventListener("keydown", evt => {
     evt.preventDefault();
 
     if (state.selectedSearchIndex >= 0 && items[state.selectedSearchIndex]) {
-        goToUsernameFromSearch(items[state.selectedSearchIndex].dataset.username || "");
+        const selected = items[state.selectedSearchIndex];
+        const username = decodeURIComponent(selected.dataset.username || "");
+        const userId = selected.dataset.userId ? decodeURIComponent(selected.dataset.userId) : null;
+        goToUsernameFromSearch(username, userId);
         return;
     }
 
     if (state.searchResults.length) {
-        goToUsernameFromSearch(state.searchResults[0].username);
+        goToUsernameFromSearch(state.searchResults[0].username, state.searchResults[0].user_id ?? null);
         return;
     }
 
